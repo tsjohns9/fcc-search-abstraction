@@ -25,15 +25,20 @@ db.MongoClient.connect(MONGODB_URI, (err, db) => {
     console.log('Connected to mongodb');
   }
 
-  // creates collection to store search history
-  db.createCollection('history');
-  const collection = db.collection('history');
+  // drops collection when server starts
+  db.collection('history').drop((err, result) => {
+    if (err) throw err;
 
-  // passes express and mongo to the routes
-  routes(app, collection);
+    // creates collection to store search history
+    db.createCollection('history');
+    const collection = db.collection('history');
 
-  // starts the server
-  app.listen(PORT, function() {
-    console.log('App listening on PORT: ' + PORT);
+    // passes express and mongo to the routes
+    routes(app, collection);
+
+    // starts the server
+    app.listen(PORT, function() {
+      console.log('App listening on PORT: ' + PORT);
+    });
   });
 });
