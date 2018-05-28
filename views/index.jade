@@ -6,14 +6,10 @@ block content
   blockquote 
    p: b User stories:
    p 1) I can get the image URLs, alt text and page urls for a set of images relating to a given search string.
-   p 2) I can paginate through the responses by adding a ?offset=2 parameter to the URL.
+   p 2) I can paginate through the responses by adding a ?offset=10 parameter to the URL.
    p 2) I can get a list of the most recently submitted search strings.
-  code http://urls-shorten.herokuapp.com/new/https://google.com
+  code https://image-search-abst.herokuapp.com/api/imagesearch/spongebob
   br
-  code http://urls-shorten.herokuapp.com/new/https://www.google.com
+  code https://image-search-abst.herokuapp.com/api/imagesearch/spongebob/?offset=10
   br
-  h2 Example query usage:
-  code https://my-app.herokuapp.com/spongebob?offset=2
-  code https://my-app.herokuapp.com/spongebob
-  h2 Example query output:
-  h2 Example latest output:
+  code  https://image-search-abst.herokuapp.com/api/history

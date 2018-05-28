@@ -11,16 +11,16 @@ module.exports = function(app, collection) {
     const query =
       Object.keys(req.query).length === 0 && req.query.constructor === Object ? null : req.query;
 
-    // if a query param exists, and the key is 'offset', then define the pagination.
-    if (query !== null && Object.keys(query)[0] === 'offset') {
-      req.params.search += '&start=' + Object.entries(req.query)[0][1];
-    }
-
     // contains search, and time of search to save to db
     const searchObj = {
-      date: moment(new Date()).format('MMMM DD, YYYY hh:mm:ss a') + ' (MST)',
+      date: moment(new Date()).format('MMMM DD, YYYY hh:mm:ss a'),
       search: req.params.search
     };
+
+    // if a query param exists, and the key is 'offset', then define the pagination. passed as a param to getImages
+    if (query !== null && Object.keys(query)[0] === 'offset') {
+      var pagination = '&start=' + Object.entries(req.query)[0][1];
+    }
 
     // saves search history
     collection.insertOne(searchObj, (err, result) => {
@@ -28,7 +28,7 @@ module.exports = function(app, collection) {
     });
 
     // gets result of search.
-    getImages(searchObj.search, (err, result) => res.send(result));
+    getImages(searchObj.search, (err, result) => res.send(result), pagination);
   });
 
   app.get('/api/history', (req, res) => {

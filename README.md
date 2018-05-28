@@ -8,10 +8,7 @@
 ## Example query usage:
 
 ```js
-https://my-app.herokuapp.com/spongebob?offset=2
-https://my-app.herokuapp.com/spongebob
+https://image-search-abst.herokuapp.com/api/imagesearch/spongebob
+https://image-search-abst.herokuapp.com/api/imagesearch/spongebob/?offset=10
+https://image-search-abst.herokuapp.com/api/history
 ```
-
-## Example query output:
-
-## Example latest output:
